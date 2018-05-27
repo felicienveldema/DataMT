@@ -1,0 +1,24 @@
+Variables:
+ne = number estimators 
+Learn = learning rate
+
+Statics:
+tree depth = 3
+------------------------
+
+GBM_ne500_learn0_1
+Accuracy: 0.9549
+prediction accuracy: 719/72349
+
+
+GBM_ne50_learn0_1
+Accuracy: 0.9551
+prediction accuracy: 0/72349
+
+GBM_ne100_learn0_1
+Accuracy: 0.9551
+prediction accuracy: 0/72349
+
+GBM_ne600_learn0_1
+Accuracy: 
+prediction accuracy: 
