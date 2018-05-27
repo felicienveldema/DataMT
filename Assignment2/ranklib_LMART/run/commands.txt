@@ -1,0 +1,27 @@
+(NDCG@50 = NDCG in here, since there is no "query" with > 50 "documents")
+
+# Train model
+java -jar RankLib-2.1-patched.jar -train ../out_Train_set_LM.txt -validate ../out_Val_set_LM.txt -ranker 6 -metric2t NDCG@50 -save my_trained_model.txt
+
+
+# Use model to create ranked lists for own created test data
+java -jar RankLib-2.1-patched.jar -load my_trained_model.txt -rank ../out_Test_set_LM.txt -indri assigned_scores_ranking_LM.txt
+
+
+
+# Use model to create ranked lists for VU test data
+# (because of filesize in multiple goes)
+
+java -jar RankLib-2.1-patched.jar -load my_trained_model.txt -rank ../out_VU_test_set_part_A.txt -indri VU_test_data_assigned_scores_ranking_LM_part_A.txt
+
+java -jar RankLib-2.1-patched.jar -load my_trained_model.txt -rank ../out_VU_test_set_part_B.txt -indri VU_test_data_assigned_scores_ranking_LM_part_B.txt
+
+java -jar RankLib-2.1-patched.jar -load my_trained_model.txt -rank ../out_VU_test_set_part_C.txt -indri VU_test_data_assigned_scores_ranking_LM_part_C.txt
+
+java -jar RankLib-2.1-patched.jar -load my_trained_model.txt -rank ../out_VU_test_set_part_not_C.txt -indri VU_test_data_assigned_scores_ranking_LM_part_not_C.txt
+
+# Put files together again
+cat VU_test_data_assigned_scores_ranking_LM_part_A.txt VU_test_data_assigned_scores_ranking_LM_part_B.txt VU_test_data_assigned_scores_ranking_LM_part_C.txt VU_test_data_assigned_scores_ranking_LM_part_not_C.txt > VU_test_data_assigned_scores_ranking_LM.txt
+
+
+
